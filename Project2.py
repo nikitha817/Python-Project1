@@ -22,14 +22,20 @@ def calculate_average(marks):
     return average
 def display_student_info(student):
     average_marks = calculate_average(student["marks"])
-    print("====Student Information====")
-    print(f"Name: {student['name']}")
-    print(f"Age: {student['age']}")
-    print("Average Marks: ", average_marks)
-    print("Total Marks: ", calculate_total(student['marks']))
-    print("Grade: ",grade(average_marks))
+    print(f"{'Student Report':^60}")
+    print(f"{'=' * 55}\n{'-' * 55}")
+    print(f"{student['name']:^60}")
+    print("-" * 55)
+    print(f"|{'Name':<20}: {student['name']}{"|":^59}")
+    print(f"|{'Age':<20}: {student['age']}{"|":^60}")
+    print("-" * 55)
     for subject, mark in student["marks"].items():
-        print(f"{subject}: {mark}")
+        print(f"|{subject:<20}: {mark}{"|":^60}")
+    print("-" * 55)
+    print(f"|{'Average Marks':<20}: {average_marks}{"|":^56}")
+    print(f"|{'Total Marks':<20}: {calculate_total(student['marks'])}{"|":^57}")
+    print(f"|{'Grade':<20}: {grade(average_marks)}{"|":^61}")
+
 def grade(average):
     if average >= 90:
         return "A"

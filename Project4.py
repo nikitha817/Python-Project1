@@ -2,15 +2,15 @@ from datetime import datetime, timedelta
 Books = []
 Borrowers =[]
 def add_books():
-    book_title = input("Enter book title: ")
-    book_author = input("Enter book author: ")
+    book_title = input("Enter book title: ").lower().strip()
+    book_author = input("Enter book author: ").strip().lower()  
     book_quantity = int(input("Enter book quantity: "))
     book_year = int(input("Enter book year: "))
     for book in Books:
-        if book["title"] == book_title.lower() and book["author"] == book_author.lower():
+        if book["title"] == book_title and book["author"] == book_author:
             print("Book already exists. \n Update the stock instead.\n")
             return
-        elif book["title"] == book_title.lower() and book["author"] != book_author.lower():
+        elif book["title"] == book_title and book["author"] != book_author:
             print("Book title already exists with a different author. \n Please check the details and try again.\n")
             return
     Books.append({
@@ -24,9 +24,20 @@ def add_books():
 def view_books():
     for book in Books:
         print(f"Title: {book['title']}, Author: {book['author']}, Quantity: {book['quantity']}, Year: {book['year']}")
+def add_borrower():
+    borrower_name = input("Enter borrower name: ").strip().lower()
+    for borrower in Borrowers:
+        if borrower["name"] == borrower_name:
+            print("Borrower already exists.\n")
+            return
+    Borrowers.append({
+        "name": borrower_name,
+        "borrowed_books": []
+    })
+    print("Borrower added successfully.\n")
 def borrow_books():
     view_books()
-    borrower_name = input("Enter borrower name: ")
+    borrower_name = input("Enter borrower name: ").strip().lower()
     borrowed_book_title = input("Enter book title to borrow: ").lower()
     borrower_book_author = input("Enter book author: ").lower()
     for borrower in Borrowers:
@@ -39,13 +50,10 @@ def borrow_books():
                     if book["quantity"] > 0:
                         book["quantity"] -= 1
                         borrower["borrowed_books"].append({
-                            "borrower": borrower_name,
-                            "borrowed_books": [{
                                 "title": borrowed_book_title,
                                 "author": borrower_book_author,
                                 "borrowed_date": datetime.now().strftime("%Y-%m-%d"),
-                                "due_date": (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")
-                            }],                                                                                                                                                                                                                               
+                                "due_date": (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")                                                                                                                                                                                                                               
                         })
                         print(f"{borrowed_book_title} borrowed successfully by {borrower_name}.\n")
                         return
@@ -83,11 +91,12 @@ def main():
     while True:
         print("1. Add Books")
         print("2. View Books")
-        print("3. Borrow Books")
-        print("4. Return Books")
-        print("5. Delete Books")
-        print("6. Update Stock")
-        print("7. Exit")
+        print("3. Add Borrower")
+        print("4. Borrow Books")
+        print("5. Return Books")
+        print("6. Delete Books")
+        print("7. Update Stock")
+        print("8. Exit")
         choice = input("Enter your choice: ")
         
         if choice == '1':
@@ -95,14 +104,16 @@ def main():
         elif choice == '2':
             view_books()
         elif choice == '3':
-            borrow_books()
+            add_borrowers()
         elif choice == '4':
-            return_books()
+            borrow_books()
         elif choice == '5':
-            delete_books()
+            return_books()
         elif choice == '6':
-            update_stock()
+            delete_books()
         elif choice == '7':
+            update_stock()
+        elif choice == '8':
             break
         else:
             print("Invalid choice. Please try again.")

@@ -28,16 +28,26 @@ def borrow_books():
     view_books()
     borrower_name = input("Enter borrower name: ")
     borrowed_book_title = input("Enter book title to borrow: ").lower()
+    borrower_book_author = input("Enter book author: ").lower()
     for borrower in Borrowers:
         if borrower["name"] == borrower_name:
             for book in Books:
-                if book["title"] == borrowed_book_title:
+                if book["title"] == borrowed_book_title and book["author"] == borrower_book_author:
+                    if borrowed_book_title in [b["title"] for b in borrower["borrowed_books"]]:
+                        print(f"{borrower_name} has already borrowed {borrowed_book_title}.\n")
+                        return
                     if book["quantity"] > 0:
                         book["quantity"] -= 1
-                        borrower["borrowed_books"].append(borrowed_book_title)
+                        borrower["borrowed_books"].append({
+                            "borrower": borrower_name,
+                            "borrowed_books": [{
+                                "title": borrowed_book_title,
+                                "author": borrower_book_author,
+                                "borrowed_date": datetime.now().strftime("%Y-%m-%d"),
+                                "due_date": (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")
+                            }],                                                                                                                                                                                                                               
+                        })
                         print(f"{borrowed_book_title} borrowed successfully by {borrower_name}.\n")
-                        borrower["borrow_date"] = datetime.now()
-                        borrower["return_date"] = borrower["borrow_date"] + timedelta(days=14)
                         return
                     else:
                         print(f"{borrowed_book_title} is out of stock.\n")
@@ -49,6 +59,7 @@ def borrow_books():
 def return_books():
     borrower_name = input("Enter borrower name: ")
     returned_book_title = input("Enter book title to return: ").lower()
+    returned_book_author = input("Enter book author: ").lower()
     for borrower in Borrowers:
         if borrower["name"] == borrower_name:
             if returned_book_title in borrower["borrowed_books"]:
@@ -72,7 +83,7 @@ def main():
     while True:
         print("1. Add Books")
         print("2. View Books")
-        print("3. Add Borrowers")
+        print("3. Borrow Books")
         print("4. Return Books")
         print("5. Delete Books")
         print("6. Update Stock")
@@ -84,7 +95,7 @@ def main():
         elif choice == '2':
             view_books()
         elif choice == '3':
-            add_borrowers()
+            borrow_books()
         elif choice == '4':
             return_books()
         elif choice == '5':

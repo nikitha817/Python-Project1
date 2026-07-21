@@ -70,7 +70,7 @@ def return_books():
     returned_book_author = input("Enter book author: ").lower()
     for borrower in Borrowers:
         if borrower["name"] == borrower_name:
-            if returned_book_title in borrower["borrowed_books"]:
+            if (returned_book_title, returned_book_author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]:
                 for book in Books:
                     if book["title"] == returned_book_title:
                         book["quantity"] += 1
@@ -84,7 +84,22 @@ def return_books():
                 return
     print(f"Borrower {borrower_name} not found.\n There is no record of this borrower in the system.\n")
 def delete_books():
-    pass
+    book_title = input("Enter book title to delete: ").lower().strip()
+    book_author = input("Enter book author to delete: ").lower().strip()
+    for book in Books:
+        if book["title"] == book_title and book["author"] == book_author:
+            confirmation = input("Are you sure you want to delete this book? (yes/no): ")
+            if confirmation.lower() == "yes":
+                if book["quantity"] == 0 and any(borrower for borrower in Borrowers if (book_title, book_author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]):
+                    print(f"Book '{book_title}' is currently borrowed and cannot be deleted.\n")
+                    return
+                Books.remove(book)
+                print(f"Book '{book_title}' deleted successfully.\n")
+                return
+            else:
+                print("Book deletion canceled.\n")
+                return
+    print(f"Book '{book_title}' by '{book_author}' not found in the library.\n")
 def update_stock():
     book_title = input("Enter book title to update stock: ").lower().strip()
     if not Books:

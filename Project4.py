@@ -1,11 +1,32 @@
 from datetime import datetime, timedelta
-Books = []
-Borrowers =[]
+import json
+try:
+    with open("books.json", "r") as f:
+        Books = json.load(f)
+except FileNotFoundError:
+    Books = []
+    with open("books.json", "w") as f:
+        json.dump(Books, f, indent=4)
+try:
+    with open("borrowers.json", "r") as f:
+        Borrowers = json.load(f)
+except FileNotFoundError:
+    Borrowers = []
+    with open("borrowers.json", "w") as f:
+        json.dump(Borrowers, f, indent=4)
 def add_books():
     book_title = input("Enter book title: ").lower().strip()
     book_author = input("Enter book author: ").strip().lower()  
-    book_quantity = int(input("Enter book quantity: "))
-    book_year = int(input("Enter book year: "))
+    try:
+        book_quantity = int(input("Enter book quantity: "))
+        book_year = int(input("Enter book year: "))
+        if book_quantity < 0 or book_year < 0:
+            print("Quantity and year cannot be negative. Please enter valid values.\n")
+            return
+    except ValueError:
+        print("Invalid input. Please enter a valid number for quantity and year.\n")
+        return
+    
     for book in Books:
         if book["title"] == book_title and book["author"] == book_author:
             print("Book already exists. \n Update the stock instead.\n")
@@ -19,14 +40,16 @@ def add_books():
         "quantity": book_quantity,
         "year": book_year
     })
+    with open("books.json", "w") as f:
+        json.dump(Books, f, indent=4)
     print("Book added successfully.\n")
 
 def view_books():
+    if not Books:
+        print("No books available in the library.\n")
+        return
     for book in Books:
-        if book is None:
-            print("No books available in the library.\n")
-        else:
-            print(f"Title: {book['title']}, Author: {book['author']}, Quantity: {book['quantity']}, Year: {book['year']}")
+        print(f"Title: {book['title']}, Author: {book['author']}, Quantity: {book['quantity']}, Year: {book['year']}")
 def add_borrowers():
     borrower_name = input("Enter borrower name: ").strip().lower()
     for borrower in Borrowers:
@@ -37,12 +60,14 @@ def add_borrowers():
         "name": borrower_name,
         "borrowed_books": []
     })
+    with open("borrowers.json", "w") as f:
+        json.dump(Borrowers, f, indent=4)
     print("Borrower added successfully.\n")
 def borrow_books():
     view_books()
     borrower_name = input("Enter borrower name: ").strip().lower()
-    borrowed_book_title = input("Enter book title to borrow: ").lower()
-    borrower_book_author = input("Enter book author: ").lower()
+    borrowed_book_title = input("Enter book title to borrow: ").lower().strip()
+    borrower_book_author = input("Enter book author: ").lower().strip()
     for borrower in Borrowers:
         if borrower["name"] == borrower_name:
             for book in Books:
@@ -58,6 +83,10 @@ def borrow_books():
                                 "borrowed_date": datetime.now().strftime("%Y-%m-%d"),
                                 "due_date": (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")                                                                                                                                                                                                                               
                         })
+                        with open("books.json", "w") as f:
+                            json.dump(Books, f, indent=4)
+                        with open("borrowers.json", "w") as f:
+                            json.dump(Borrowers, f, indent=4)
                         print(f"{borrowed_book_title} borrowed successfully by {borrower_name}.\n")
                         return
                     else:
@@ -77,8 +106,12 @@ def return_books():
                 for book in Books:
                     if book["title"] == returned_book_title and book["author"] == returned_book_author:
                         book["quantity"] += 1
-                        borrower["borrowed_books"].remove((returned_book_title, returned_book_author))
+                        borrower["borrowed_books"].remove(next(b for b in borrower["borrowed_books"] if b["title"] == returned_book_title and b["author"] == returned_book_author))
                         print(f"{returned_book_title} by {returned_book_author} returned successfully by {borrower_name}.\n")
+                        with open("books.json", "w") as f:
+                            json.dump(Books, f, indent=4)
+                        with open("borrowers.json", "w") as f:
+                            json.dump(Borrowers, f, indent=4)
                         return
                 print(f"{returned_book_title} by {returned_book_author} not found in the library.\n")
                 return
@@ -98,6 +131,8 @@ def delete_books():
                     return
                 Books.remove(book)
                 print(f"Book '{book_title}' deleted successfully.\n")
+                with open("books.json", "w") as f:
+                    json.dump(Books, f, indent=4)
                 return
             else:
                 print("Book deletion canceled.\n")
@@ -111,10 +146,19 @@ def update_stock():
         return
     for book in Books:
         if book["title"] == book_title and book["author"] == book_author:
-            new_stock = int(input("Enter new stock quantity: "))
-            book["quantity"] = new_stock
-            print(f"Stock for {book_title} by {book_author} updated successfully.\n")
-            return
+            try:
+                new_stock = int(input("Enter new stock quantity: "))
+                if new_stock < 0:
+                    print("Stock quantity cannot be negative. Please enter a valid quantity.\n")
+                    return
+                book["quantity"] = new_stock
+                with open("books.json", "w") as f:
+                    json.dump(Books, f, indent=4)
+                print(f"Stock for {book_title} by {book_author} updated successfully.\n")
+                return
+            except ValueError:
+                print("Invalid input. Please enter a valid number for stock quantity.\n")
+                return
     print(f"Book '{book_title}' by '{book_author}' not found in the library.\n")
 def main():
     while True:

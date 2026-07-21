@@ -23,7 +23,10 @@ def add_books():
 
 def view_books():
     for book in Books:
-        print(f"Title: {book['title']}, Author: {book['author']}, Quantity: {book['quantity']}, Year: {book['year']}")
+        if book is None:
+            print("No books available in the library.\n")
+        else:
+            print(f"Title: {book['title']}, Author: {book['author']}, Quantity: {book['quantity']}, Year: {book['year']}")
 def add_borrowers():
     borrower_name = input("Enter borrower name: ").strip().lower()
     for borrower in Borrowers:
@@ -44,7 +47,7 @@ def borrow_books():
         if borrower["name"] == borrower_name:
             for book in Books:
                 if book["title"] == borrowed_book_title and book["author"] == borrower_book_author:
-                    if borrowed_book_title in [b["title"] for b in borrower["borrowed_books"]]:
+                    if (borrowed_book_title, borrower_book_author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]:
                         print(f"{borrower_name} has already borrowed {borrowed_book_title}.\n")
                         return
                     if book["quantity"] > 0:
@@ -65,22 +68,22 @@ def borrow_books():
     print(f"Borrower {borrower_name} not found.\n Add the borrower first before borrowing a book.\n")
 
 def return_books():
-    borrower_name = input("Enter borrower name: ")
-    returned_book_title = input("Enter book title to return: ").lower()
-    returned_book_author = input("Enter book author: ").lower()
+    borrower_name = input("Enter borrower name: ").strip().lower()
+    returned_book_title = input("Enter book title to return: ").strip().lower()
+    returned_book_author = input("Enter book author: ").strip().lower()
     for borrower in Borrowers:
         if borrower["name"] == borrower_name:
             if (returned_book_title, returned_book_author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]:
                 for book in Books:
-                    if book["title"] == returned_book_title:
+                    if book["title"] == returned_book_title and book["author"] == returned_book_author:
                         book["quantity"] += 1
-                        borrower["borrowed_books"].remove(returned_book_title)
-                        print(f"{returned_book_title} returned successfully by {borrower_name}.\n")
+                        borrower["borrowed_books"].remove((returned_book_title, returned_book_author))
+                        print(f"{returned_book_title} by {returned_book_author} returned successfully by {borrower_name}.\n")
                         return
-                print(f"{returned_book_title} not found in the library.\n")
+                print(f"{returned_book_title} by {returned_book_author} not found in the library.\n")
                 return
             else:
-                print(f"{borrower_name} did not borrow {returned_book_title}.\n")
+                print(f"{borrower_name} did not borrow {returned_book_title} by {returned_book_author}.\n")
                 return
     print(f"Borrower {borrower_name} not found.\n There is no record of this borrower in the system.\n")
 def delete_books():
@@ -102,16 +105,17 @@ def delete_books():
     print(f"Book '{book_title}' by '{book_author}' not found in the library.\n")
 def update_stock():
     book_title = input("Enter book title to update stock: ").lower().strip()
+    book_author = input("Enter book author to update stock: ").lower().strip()
     if not Books:
         print("No books available to update stock.\n")
         return
     for book in Books:
-        if book["title"] == book_title:
+        if book["title"] == book_title and book["author"] == book_author:
             new_stock = int(input("Enter new stock quantity: "))
             book["quantity"] = new_stock
-            print(f"Stock for {book_title} updated successfully.\n")
+            print(f"Stock for {book_title} by {book_author} updated successfully.\n")
             return
-    print(f"Book '{book_title}' not found in the library.\n")
+    print(f"Book '{book_title}' by '{book_author}' not found in the library.\n")
 def main():
     while True:
         print("1. Add Books")

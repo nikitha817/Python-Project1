@@ -24,7 +24,7 @@ def add_books():
 def view_books():
     for book in Books:
         print(f"Title: {book['title']}, Author: {book['author']}, Quantity: {book['quantity']}, Year: {book['year']}")
-def add_borrower():
+def add_borrowers():
     borrower_name = input("Enter borrower name: ").strip().lower()
     for borrower in Borrowers:
         if borrower["name"] == borrower_name:
@@ -86,7 +86,17 @@ def return_books():
 def delete_books():
     pass
 def update_stock():
-    pass
+    book_title = input("Enter book title to update stock: ").lower().strip()
+    if not Books:
+        print("No books available to update stock.\n")
+        return
+    for book in Books:
+        if book["title"] == book_title:
+            new_stock = int(input("Enter new stock quantity: "))
+            book["quantity"] = new_stock
+            print(f"Stock for {book_title} updated successfully.\n")
+            return
+    print(f"Book '{book_title}' not found in the library.\n")
 def main():
     while True:
         print("1. Add Books")

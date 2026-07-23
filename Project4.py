@@ -212,6 +212,9 @@ def update_stock():
     print(f"Book '{title}' by '{author}' not found in the library.\n")
 def main():
     while True:
+        print("=" * 40)
+        print(f"{"Library Menu":^40}")
+        print("=" * 40)
         print("1. Add Books")
         print("2. View Books")
         print("3. Add Borrower")

@@ -8,12 +8,13 @@ try:
 except FileNotFoundError:
     Books = []
     Borrowers = []
-    def save_books():
-        with open("books.json","w") as f:
-            json.dump(Books,f,indent=4)
-    def save_borrowers():
-        with open("borrowers.json","w") as f:
-            json.dump(Borrowers,f,indent=4)
+    
+def save_books():
+    with open("books.json","w") as f:
+        json.dump(Books,f,indent=4)
+def save_borrowers():
+    with open("borrowers.json","w") as f:
+        json.dump(Borrowers,f,indent=4)
 def add_books():
     book_title = input("Enter book title: ").lower().strip()
     book_author = input("Enter book author: ").strip().lower()  
@@ -64,8 +65,7 @@ def add_borrowers():
     })
     save_borrowers()
     print("Borrower added successfully.\n")
-def borrow_books():
-    view_books()
+def borrower_info():
     borrower_name = input("Enter borrower name: ").strip().lower()
     if borrower_name == "":
         print("Borrower name cannot be empty.")
@@ -73,9 +73,18 @@ def borrow_books():
     borrowed_book_title = input("Enter book title to borrow: ").lower().strip()
     if borrowed_book_title == "":
         print("Borrowed book cannot be empty. ")
+        return
     borrower_book_author = input("Enter book author: ").lower().strip()
     if borrower_book_author == "":
         print("Borrower author cannot be empty.")
+        return
+    return borrowed_book_title,borrower_book_author,borrower_name 
+def borrow_books():
+    view_books()
+    result = borrower_info()
+    if not result:
+        return
+    borrowed_book_title, borrower_book_author, borrower_name = result
     for borrower in Borrowers:
         if borrower["name"] == borrower_name:
             for book in Books:
@@ -86,10 +95,10 @@ def borrow_books():
                     if book["quantity"] > 0:
                         book["quantity"] -= 1
                         borrower["borrowed_books"].append({
-                                "title": borrowed_book_title,
-                                "author": borrower_book_author,
-                                "borrowed_date": datetime.now().strftime("%Y-%m-%d"),
-                                "due_date": (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")                                                                                                                                                                                                                               
+                            "title": borrowed_book_title,
+                            "author": borrower_book_author,
+                            "borrowed_date": datetime.now().strftime("%Y-%m-%d"),
+                            "due_date": (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")
                         })
                         save_books()
                         save_borrowers()
@@ -103,12 +112,10 @@ def borrow_books():
     print(f"Borrower {borrower_name} not found.\n Add the borrower first before borrowing a book.\n")
 
 def return_books():
-    borrower_name = input("Enter borrower name: ").strip().lower()
-    if borrower_name == "":
-        print("Borrower name cannot be empty.")
+    result = borrower_info()
+    if not result:
         return
-    returned_book_title = input("Enter book title to return: ").strip().lower()
-    returned_book_author = input("Enter book author: ").strip().lower()
+    returned_book_title, returned_book_author, borrower_name = result
     for borrower in Borrowers:
         if borrower["name"] == borrower_name:
             if (returned_book_title, returned_book_author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]:
@@ -126,33 +133,41 @@ def return_books():
                 print(f"{borrower_name} did not borrow {returned_book_title} by {returned_book_author}.\n")
                 return
     print(f"Borrower {borrower_name} not found.\n There is no record of this borrower in the system.\n")
+def get_book_details():
+    title = input(...)
+    author = input(...)
+    return title, author
 def delete_books():
-    book_title = input("Enter book title to delete: ").lower().strip()
-    book_author = input("Enter book author to delete: ").lower().strip()
+    result = get_book_details()
+    if not result:
+        return
+    title, author = result
     for book in Books:
-        if book["title"] == book_title and book["author"] == book_author:
+        if book["title"] == title and book["author"] == author:
             confirmation = input("Are you sure you want to delete this book? (yes/no): ")
             if confirmation.lower() == "yes":
-                if book["quantity"] == 0 and any(borrower for borrower in Borrowers if (book_title, book_author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]):
-                    print(f"Book '{book_title}' is currently borrowed and cannot be deleted.\n")
+                if book["quantity"] == 0 and any(borrower for borrower in Borrowers if (title, author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]):
+                    print(f"Book '{title}' is currently borrowed and cannot be deleted.\n")
                     return
                 Books.remove(book)
-                print(f"Book '{book_title}' deleted successfully.\n")
+                print(f"Book '{title}' deleted successfully.\n")
                 save_books()
                 save_borrowers()
                 return
             else:
                 print("Book deletion canceled.\n")
                 return
-    print(f"Book '{book_title}' by '{book_author}' not found in the library.\n")
+    print(f"Book '{title}' by '{author}' not found in the library.\n")
 def update_stock():
-    book_title = input("Enter book title to update stock: ").lower().strip()
-    book_author = input("Enter book author to update stock: ").lower().strip()
+    result = get_book_details()
+    if not result:
+        return
+    title, author = result
     if not Books:
         print("No books available to update stock.\n")
         return
     for book in Books:
-        if book["title"] == book_title and book["author"] == book_author:
+        if book["title"] == title and book["author"] == author:
             try:
                 new_stock = int(input("Enter new stock quantity: "))
                 if new_stock < 0:
@@ -161,12 +176,12 @@ def update_stock():
                 book["quantity"] = new_stock
                 save_books()
                 save_borrowers()
-                print(f"Stock for {book_title} by {book_author} updated successfully.\n")
+                print(f"Stock for {title} by {author} updated successfully.\n")
                 return
             except ValueError:
                 print("Invalid input. Please enter a valid number for stock quantity.\n")
                 return
-    print(f"Book '{book_title}' by '{book_author}' not found in the library.\n")
+    print(f"Book '{title}' by '{author}' not found in the library.\n")
 def main():
     while True:
         print("1. Add Books")
@@ -178,7 +193,7 @@ def main():
         print("7. Update Stock")
         print("8. Exit")
         choice = input("Enter your choice: ")
-        
+
         if choice == '1':
             add_books()
         elif choice == '2':
@@ -197,3 +212,5 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")
+if __name__ == "__main__":
+    main()

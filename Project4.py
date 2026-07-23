@@ -49,7 +49,8 @@ def view_books():
         print("No books available in the library.\n")
         return
     for book in Books:
-        print(f"Title: {book['title']}, Author: {book['author']}, Quantity: {book['quantity']}, Year: {book['year']}")
+        print("-" * 40)
+        print(f"{"Title":<12}: {book['title']}\n{"Author":<12}: {book['author']}\n{"Quantity":<12}: {book['quantity']}\n{"Year":<12}: {book['year']}")
 def add_borrowers():
     borrower_name = input("Enter borrower name: ").strip().lower()
     if borrower_name == "":
@@ -81,6 +82,9 @@ def borrower_info():
     return borrowed_book_title,borrower_book_author,borrower_name 
 def borrow_books():
     view_books()
+    if not Books:
+        print("No books available.")
+        return
     result = borrower_info()
     if not result:
         return
@@ -110,8 +114,24 @@ def borrow_books():
             print(f"{borrowed_book_title} not found in the library.\n")
             return
     print(f"Borrower {borrower_name} not found.\n Add the borrower first before borrowing a book.\n")
-
+def returned_info():
+    borrower_name = input("Enter borrower name: ").strip().lower()
+    if borrower_name == "":
+        print("Borrower name cannot be empty.")
+        return
+    returned_book_title = input("Enter book title to borrow: ").lower().strip()
+    if returned_book_title == "":
+        print("Returned book cannot be empty. ")
+        return
+    returned_book_author = input("Enter book author: ").lower().strip()
+    if returned_book_author == "":
+        print("Returned author cannot be empty.")
+        return
+    return returned_book_title,returned_book_author,borrower_name 
 def return_books():
+    if not Borrowers:
+        print("No Borrowers fround.")
+        return
     result = borrower_info()
     if not result:
         return
@@ -134,8 +154,13 @@ def return_books():
                 return
     print(f"Borrower {borrower_name} not found.\n There is no record of this borrower in the system.\n")
 def get_book_details():
-    title = input(...)
-    author = input(...)
+    title = input("Enter book title: ").strip().lower()
+    author = input("Enter book author: ").strip().lower()
+
+    if title == "" or author == "":
+        print("Book title and author cannot be empty.\n")
+        return
+
     return title, author
 def delete_books():
     result = get_book_details()
@@ -146,7 +171,10 @@ def delete_books():
         if book["title"] == title and book["author"] == author:
             confirmation = input("Are you sure you want to delete this book? (yes/no): ")
             if confirmation.lower() == "yes":
-                if book["quantity"] == 0 and any(borrower for borrower in Borrowers if (title, author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]):
+                if any(
+    (title, author) in [(b["title"], b["author"]) for b in borrower["borrowed_books"]]
+    for borrower in Borrowers
+):
                     print(f"Book '{title}' is currently borrowed and cannot be deleted.\n")
                     return
                 Books.remove(book)

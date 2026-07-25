@@ -1,8 +1,8 @@
 # Python Learning Projects
 
-Hi! I'm Nikitha, a second-year AI student at St. Ann's College for Women. This repo has 9 Python projects I built while learning programming. Each one taught me something new—from basic functions to file handling, data structures, and real-world applications.
+Hi! I'm Nikitha, a second-year AI student at St. Ann's College for Women. This repo has 7 Python projects I built while learning programming. Each one taught me something new—from basic functions to file handling, data structures, and real-world applications.
 
-## 📋 My 9 Projects
+## 📋 My 7 Projects
 
 ### 1. **Calculator**
 
@@ -14,8 +14,6 @@ My first real project after learning about functions. It's a simple calculator t
 - Choose operations from a menu
 
 **What I learned:** Functions, conditionals, loops, user input handling, menu-driven applications
-
-[View Full Project](./Calculator)
 
 ---
 
@@ -29,8 +27,6 @@ I built this while learning about data processing and how to organize informatio
 - Uses functions to keep code clean
 
 **What I learned:** File handling, data organization, working with datasets, functions for modularity
-
-[View Full Project](./Student-Performance-Prediction)
 
 ---
 
@@ -46,8 +42,6 @@ This project let me work with dictionaries and lists to store and manage multipl
 - Display formatted reports
 
 **What I learned:** Dictionaries, nested data structures (lists inside dicts), loops for processing multiple records, string formatting, automation with conditionals
-
-[View Full Project](./Student-Management-System)
 
 ---
 
@@ -65,8 +59,6 @@ My biggest project so far. A complete system where you can add books, borrow the
 
 **What I learned:** JSON file handling, datetime module, exception handling (try-except), CRUD operations, data validation, error management
 
-[View Full Project](./Library-Management-System)
-
 ---
 
 ### 5. **Number Guessing Game**
@@ -80,8 +72,6 @@ A fun interactive game where the computer picks a random number and you get 6 at
 - Shows how many attempts it took to win
 
 **What I learned:** Random module, loops with attempt tracking, exception handling for input validation, user feedback, conditionals for game logic
-
-[View Full Project](./Number-Guessing-Game)
 
 ---
 
@@ -97,8 +87,6 @@ A simple tool that creates random, secure passwords with letters, numbers, and s
 
 **What I learned:** String module, random.choice(), list comprehension, try-except for error handling, combining multiple character sets
 
-[View Full Project](./Password-Generator)
-
 ---
 
 ### 7. **BMI Calculator**
@@ -112,39 +100,6 @@ A real-world application that calculates your Body Mass Index and categorizes it
 - Validates user input
 
 **What I learned:** Formula implementation, multiple functions for different tasks, if-elif-else chains for categorization, exception handling, float arithmetic
-
-[View Full Project](./BMI-Calculator)
-
----
-
-### 8. **Astrology Horoscope Generator**
-
-A personalized horoscope generator that creates astrology readings based on user input.
-
-**What it does:**
-- Generates personalized horoscopes
-- Takes zodiac sign as input
-- Returns customized reading
-
-**What I learned:** String manipulation, output formatting, logic for content generation
-
-[View Full Project](./Astrology-Generator)
-
----
-
-### 9. **Astrology Web Generator** (HTML/CSS/JS)
-
-A multi-page interactive web project with HTML, CSS, and JavaScript features.
-
-**What it does:**
-- Multi-page website
-- Interactive features
-- Styling with CSS
-- Dynamic behavior with JavaScript
-
-**What I learned:** HTML structure, CSS styling, JavaScript basics, web development fundamentals
-
-[View Full Project](./Astrology-Web-Generator)
 
 ---
 
@@ -194,8 +149,6 @@ I started with a simple calculator and kept building more complex stuff:
 **Number Guessing** → Learn game logic and random module  
 **Password Generator** → Learn string module and randomization  
 **BMI Calculator** → Learn formula implementation and categorization  
-**Astrology Generator** → Learn string manipulation  
-**Web Generator** → Learn HTML/CSS/JS basics  
 
 **Progressive complexity:** Each project built on what I learned before.
 
@@ -211,10 +164,10 @@ I started with a simple calculator and kept building more complex stuff:
 
 ---
 
-## 🎯 Things I Could Add/Learn Next
+## 🎯 Things I Could Build/Learn Next
 
-- GUI interfaces (Tkinter)
-- Database integration (SQL with Python)
+- More complex projects with databases
+- Larger applications with multiple files
 - Web frameworks (Flask, FastAPI)
 - More advanced DSA concepts
 - Testing (unit tests)
@@ -229,7 +182,7 @@ I started with a simple calculator and kept building more complex stuff:
 git clone https://github.com/nikitha817/Python-Project1.git
 cd Python-Project1
 
-# Go to any project
+# Go to any project folder
 cd Calculator
 python Project1.py
 ```

@@ -1,3 +1,4 @@
+# Project7
 # BMI Calculator
 
 A simple tool to calculate your Body Mass Index (BMI) based on your weight and height. It calculates your BMI and tells you which category you fall into (Underweight, Normal, Overweight, or Obese).

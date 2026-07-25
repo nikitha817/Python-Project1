@@ -1,3 +1,4 @@
+# Project6
 # Password Generator
 
 A simple tool that creates random, secure passwords. You choose the length, and it generates a password with letters, numbers, and special characters.

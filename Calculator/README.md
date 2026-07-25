@@ -1,3 +1,4 @@
+# Project1
 # Calculator
 
 This was my first real programming project after learning about functions! It's a simple calculator that does basic math.

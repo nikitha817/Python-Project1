@@ -1,3 +1,4 @@
+# Project3
 # Student Management System
 
 This project let me work with dictionaries and lists to store and manage student data. It was really cool because it does a lot of calculations automatically!

@@ -1,8 +1,8 @@
 # Python Learning Projects
 
-Hi! I'm Nikitha, a second-year AI student at St. Ann's College for Women. This repo has 7 Python projects I built while learning programming. Each one taught me something new—from basic functions to file handling, data structures, and real-world applications.
+Hi! I'm Nikitha, a second-year AI student at St. Ann's College for Women. This repo has 9 Python projects I built while learning programming. Each one taught me something new—from basic functions to file handling, data structures, and real-world applications.
 
-## 📋 My 7 Projects
+## 📋 My 9 Projects
 
 ### 1. **Calculator**
 
@@ -103,6 +103,36 @@ A real-world application that calculates your Body Mass Index and categorizes it
 
 ---
 
+### 8. **Expense Tracker**
+
+A practical tool to track daily expenses, view them, delete specific ones, and calculate total spending.
+
+**What it does:**
+- Add expenses with name and amount
+- View all expenses in formatted output
+- Delete specific expenses by name
+- Calculate and display total expenses
+- Input validation for amounts
+
+**What I learned:** Lists of dictionaries, dictionary key-value pairs, sum() with generator expression, string formatting (.center(), .strip()), input validation, case-insensitive comparison
+
+---
+
+### 9. **To-Do List**
+
+A task management tool to keep track of what you need to do. Add tasks, view them all, and remove completed ones.
+
+**What it does:**
+- Add new tasks
+- View all tasks with automatic numbering (1, 2, 3...)
+- Remove tasks by their number
+- Input validation (checks for empty tasks)
+- Menu-driven interface
+
+**What I learned:** Lists for storage, enumerate() function with start parameter, user-friendly numbering (1-based), try-except for input validation, range checking for list bounds
+
+---
+
 ## 🚀 Skills I Used Across All Projects
 
 **Core Python Concepts:**
@@ -123,13 +153,15 @@ A real-world application that calculates your Body Mass Index and categorizes it
 - Random module (random numbers, random.choice)
 - String module (character sets)
 - Datetime module (date calculations)
-- Built-in functions
+- Built-in functions (sum, enumerate, etc.)
 
 **Programming Practices:**
 - CRUD operations (Create, Read, Update, Delete)
 - Data validation and error handling
 - Menu-driven applications
 - Formatted output and reports
+- Case-insensitive comparison
+- Input sanitization (.strip())
 
 **Currently Learning:**
 - Data Structures & Algorithms (Striver's A-Z)
@@ -149,6 +181,8 @@ I started with a simple calculator and kept building more complex stuff:
 **Number Guessing** → Learn game logic and random module  
 **Password Generator** → Learn string module and randomization  
 **BMI Calculator** → Learn formula implementation and categorization  
+**Expense Tracker** → Learn lists of dictionaries and practical apps  
+**To-Do List** → Learn enumerate() and user-friendly indexing  
 
 **Progressive complexity:** Each project built on what I learned before.
 
@@ -161,14 +195,16 @@ I started with a simple calculator and kept building more complex stuff:
 ✓ Good code structure matters (functions, organization)  
 ✓ Documentation is as important as code  
 ✓ Shipping > Perfect  
+✓ Practical apps matter (expense tracker, to-do list > just games)  
 
 ---
 
 ## 🎯 Things I Could Build/Learn Next
 
-- More complex projects with databases
-- Larger applications with multiple files
-- Web frameworks (Flask, FastAPI)
+- Save data to files (so expenses/tasks persist)
+- Add categories and filtering
+- Database integration (SQL)
+- Web interfaces for these apps
 - More advanced DSA concepts
 - Testing (unit tests)
 - API development
@@ -185,6 +221,13 @@ cd Python-Project1
 # Go to any project folder
 cd Calculator
 python Project1.py
+
+# Or for other projects
+cd Expense-Tracker
+python expense_tracker.py
+
+cd Todo-List
+python todo_list.py
 ```
 
 Pick any project and run it! Most have menus so just follow the instructions.

@@ -37,7 +37,7 @@ def remove_task():
 def main():
     while True:
         print("=" * 40)
-        print(f"{"To-Do List":^40}")
+        print("To-Do List".center(40))
         print("=" * 40)
         print("|1. Add Task")
         print("|2. Veiw Task")
@@ -51,6 +51,7 @@ def main():
         elif choice == '3':
             remove_task()
         elif choice == '4':
+            print("Thank you for using To-Do List!")
             break
         else:
             print("Invalid choice! Try again")

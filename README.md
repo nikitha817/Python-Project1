@@ -1,261 +1,58 @@
-# Python Learning Projects
-
-Hi! I'm Nikitha, a second-year AI student at St. Ann's College for Women. This repo has 9 Python projects I built while learning programming. Each one taught me something new—from basic functions to file handling, data structures, and real-world applications.
-
-## 📋 My 9 Projects
-
-### 1. **Calculator**
-
-My first real project after learning about functions. It's a simple calculator that lets you do basic math.
-
-**What it does:**
-- Add, subtract, multiply, divide numbers
-- Keep calculating until you want to stop
-- Choose operations from a menu
-
-**What I learned:** Functions, conditionals, loops, user input handling, menu-driven applications
-
----
-
-### 2. **Student Performance Prediction**
-
-I built this while learning about data processing and how to organize information for analysis.
-
-**What it does:**
-- Loads student information from a dataset
-- Organizes the data properly
-- Uses functions to keep code clean
-
-**What I learned:** File handling, data organization, working with datasets, functions for modularity
-
----
-
-### 3. **Student Management System**
-
-This project let me work with dictionaries and lists to store and manage multiple student records with automatic grade calculation.
-
-**What it does:**
-- Add student information (name, marks)
-- Store multiple students
-- Calculate total and average marks
-- Automatically assign grades (A, B, C, D, F)
-- Display formatted reports
-
-**What I learned:** Dictionaries, nested data structures (lists inside dicts), loops for processing multiple records, string formatting, automation with conditionals
-
----
-
-### 4. **Library Management System** ⭐
-
-My biggest project so far. A complete system where you can add books, borrow them, return them, and all data is saved permanently using JSON files.
-
-**What it does:**
-- Add, borrow, return, update, delete books
-- Track borrowers and borrowed items
-- Calculate due dates automatically
-- Prevent duplicate entries
-- Save everything to JSON files
-- Handle errors gracefully
-
-**What I learned:** JSON file handling, datetime module, exception handling (try-except), CRUD operations, data validation, error management
-
----
-
-### 5. **Number Guessing Game**
-
-A fun interactive game where the computer picks a random number and you get 6 attempts to guess it.
-
-**What it does:**
-- Computer picks random number (1-100)
-- You get 6 tries
-- Get hints (too high/too low)
-- Shows how many attempts it took to win
-
-**What I learned:** Random module, loops with attempt tracking, exception handling for input validation, user feedback, conditionals for game logic
-
----
-
-### 6. **Password Generator**
-
-A simple tool that creates random, secure passwords with letters, numbers, and special characters.
-
-**What it does:**
-- Takes your input for password length
-- Generates random password
-- Uses uppercase, lowercase, numbers, punctuation
-- Validates input
-
-**What I learned:** String module, random.choice(), list comprehension, try-except for error handling, combining multiple character sets
-
----
-
-### 7. **BMI Calculator**
-
-A real-world application that calculates your Body Mass Index and categorizes it.
-
-**What it does:**
-- Takes weight and height input
-- Calculates BMI using formula: weight/(height²)
-- Categorizes into Underweight, Normal, Overweight, Obese
-- Validates user input
-
-**What I learned:** Formula implementation, multiple functions for different tasks, if-elif-else chains for categorization, exception handling, float arithmetic
-
----
-
-### 8. **Expense Tracker**
-
-A practical tool to track daily expenses, view them, delete specific ones, and calculate total spending.
-
-**What it does:**
-- Add expenses with name and amount
-- View all expenses in formatted output
-- Delete specific expenses by name
-- Calculate and display total expenses
-- Input validation for amounts
-
-**What I learned:** Lists of dictionaries, dictionary key-value pairs, sum() with generator expression, string formatting (.center(), .strip()), input validation, case-insensitive comparison
-
----
-
-### 9. **To-Do List**
-
-A task management tool to keep track of what you need to do. Add tasks, view them all, and remove completed ones.
-
-**What it does:**
-- Add new tasks
-- View all tasks with automatic numbering (1, 2, 3...)
-- Remove tasks by their number
-- Input validation (checks for empty tasks)
-- Menu-driven interface
-
-**What I learned:** Lists for storage, enumerate() function with start parameter, user-friendly numbering (1-based), try-except for input validation, range checking for list bounds
-
----
-
-## 🚀 Skills I Used Across All Projects
-
-**Core Python Concepts:**
-- Functions and modularity
-- Loops (for, while) and conditionals
-- Data structures (lists, dictionaries, nested collections)
-- Exception handling (try-except blocks)
-- User input validation
-- String manipulation and formatting
-
-**File & Data Handling:**
-- JSON file I/O (reading and writing)
-- Persistent data storage
-- Dataset organization
-- File handling with error checking
-
-**Modules & Libraries:**
-- Random module (random numbers, random.choice)
-- String module (character sets)
-- Datetime module (date calculations)
-- Built-in functions (sum, enumerate, etc.)
-
-**Programming Practices:**
-- CRUD operations (Create, Read, Update, Delete)
-- Data validation and error handling
-- Menu-driven applications
-- Formatted output and reports
-- Case-insensitive comparison
-- Input sanitization (.strip())
-
-**Currently Learning:**
-- Data Structures & Algorithms (Striver's A-Z)
-- Git & GitHub for version control
-- SQL for database management
-
----
-
-## 📈 My Learning Journey
-
-I started with a simple calculator and kept building more complex stuff:
-
-**Calculator** → Learn functions and menus  
-**Performance Prediction** → Learn file handling and data organization  
-**Student Management** → Learn data structures (dicts, lists)  
-**Library System** → Learn persistence and error handling  
-**Number Guessing** → Learn game logic and random module  
-**Password Generator** → Learn string module and randomization  
-**BMI Calculator** → Learn formula implementation and categorization  
-**Expense Tracker** → Learn lists of dictionaries and practical apps  
-**To-Do List** → Learn enumerate() and user-friendly indexing  
-
-**Progressive complexity:** Each project built on what I learned before.
-
----
-
-## 💡 What I Learned About Learning to Code
-
-✓ Building real projects teaches more than tutorials  
-✓ Errors and debugging are where real learning happens  
-✓ Good code structure matters (functions, organization)  
-✓ Documentation is as important as code  
-✓ Shipping > Perfect  
-✓ Practical apps matter (expense tracker, to-do list > just games)  
-
----
-
-## 🎯 Things I Could Build/Learn Next
-
-- Save data to files (so expenses/tasks persist)
-- Add categories and filtering
-- Database integration (SQL)
-- Web interfaces for these apps
-- More advanced DSA concepts
-- Testing (unit tests)
-- API development
-
----
-
-## 📝 How to Use These Projects
+# Python Projects Portfolio
+
+Second-year AI & CS student. 9 projects built while learning programming fundamentals. Each project solves a real problem and demonstrates progressive skill growth.
+
+## 📊 Projects at a Glance
+
+| # | Project | What It Solves | Tech Used |
+|---|---------|---|---|
+| 1 | Calculator | Basic arithmetic operations | Functions, loops, conditionals |
+| 2 | Student Performance Prediction | Organize student data for analysis | File handling, data structures |
+| 3 | Student Management System | Track 100+ students + auto-grade | Dictionaries, nested lists, formatting |
+| 4 | Library Management System ⭐ | Persistent book/borrower tracking | JSON, datetime, CRUD, exception handling |
+| 5 | Number Guessing Game | Interactive 6-attempt game | Random module, loops, input validation |
+| 6 | Password Generator | Create secure random passwords | String module, list comprehension |
+| 7 | BMI Calculator | Real-world health metric calculation | Formula logic, if-elif chains |
+| 8 | Expense Tracker | Track daily spending + totals | Lists of dicts, sum(), filtering |
+| 9 | To-Do List | Task management with numbering | enumerate(), input validation |
+
+## 🔧 Skills Demonstrated
+
+**Core Python:** Functions, loops, conditionals, exception handling, input validation  
+**Data Structures:** Lists, dictionaries, nested collections  
+**File Handling:** JSON persistence, data I/O  
+**Modules:** Random, string, datetime, built-ins  
+**Best Practices:** CRUD operations, error handling, formatted output, data validation
+
+## 🚀 Getting Started
 
 ```bash
-# Clone the repo
+# Clone repo
 git clone https://github.com/nikitha817/Python-Project1.git
 cd Python-Project1
 
-# Go to any project folder
-cd Calculator
-python Project1.py
-
-# Or for other projects
-cd Expense-Tracker
-python expense_tracker.py
-
-cd Todo-List
-python todo_list.py
+# Run any project
+python Project1_Calculator.py
+python Project4_LibraryManagement.py
+# etc...
 ```
 
-Pick any project and run it! Most have menus so just follow the instructions.
+Each project is standalone with a menu-driven interface.
+
+## 💡 What These Projects Taught Me
+
+✓ Building beats tutorials  
+✓ Real problems > toy exercises  
+✓ Code structure matters (functions, organization)  
+✓ Error handling is 50% of programming  
+✓ Shipping > perfect  
+
+## 🎯 Next: MentorBridge
+
+Building a full-stack platform connecting students to working professionals for real-time career guidance. FastAPI backend, React Native frontend, Claude API for intelligent matching.
+
+**Currently learning:** Git, SQL, DSA (Striver's A-Z), FastAPI
 
 ---
 
-## 👤 About Me
-
-I'm Nikitha, a second-year AI student from Hyderabad who loves coding and building things. I'm learning Python, AI, DSA, and cloud computing. These projects are part of my journey to become an AI engineer.
-
-I believe in:
-- Learning by building
-- Shipping over perfection
-- Documenting everything
-- Asking for feedback
-
-[LinkedIn](https://www.linkedin.com/in/nikithakantha) | [GitHub](https://github.com/nikitha817)
-
----
-
-## 📄 License
-
-These projects are open source and available under the MIT License.
-
----
-
-**Note:** These are learning projects I built while studying. The code isn't perfect (I'm still learning!) but I learned a lot from building each one. If you find bugs or have suggestions, feel free to reach out!
-
----
-
-**If you're a student reading this:** Stop waiting for "the right time" to start building. You have time. You have ideas. Start now. 🚀
+**[LinkedIn](https://www.linkedin.com/in/nikithakantha) | [GitHub](https://github.com/nikitha817)**

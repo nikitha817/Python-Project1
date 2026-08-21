@@ -1,0 +1,60 @@
+import numpy as np
+# [maths, physics, chemistry, biology, english]
+subjects = np.array(["Maths", "Physics", "Chemistry", "Biology", "English"])
+students = np.array(["Student 1", "Student 2", "Student 3"])
+marks = np.array([[39, 58, 76, 95, 65],
+                 [40, 59, 77, 96, 66],
+                 [92, 44, 68, 88, 70]])
+Average_marks = np.mean(marks, axis=1).round(2)
+Grade = np.where(Average_marks >= 90, 'O', np.where(Average_marks >= 80, 'A', np.where(Average_marks >= 70, 'B', np.where(Average_marks >= 60, 'C', 'D'))))
+def display_summary():
+    print("=" *50)
+    print("Student Marks Analysis".center(50))
+    print("=" *50)
+    print(f"{'Average Marks':<25}: {np.mean(marks).round(2)}")
+    print(f"{'Highest Total Marks':<25}: {np.max(np.sum(marks, axis=1))}")
+    print(f"{'Lowest Total Marks':<25}: {np.min(np.sum(marks, axis=1))}")
+display_summary()
+def display_subject_analysis():
+    print("=" *50)
+    print("Subject Analysis".center(50))
+    print("=" *50)
+    print(f"{'Weakest subject':<25}: {subjects[np.argmin(np.mean(marks, axis=0))]}")
+    print(f"{'Strongest subject':<25}: {subjects[np.argmax(np.mean(marks, axis=0))]}")
+    print(f"{'Average Student Marks':<25}: {Average_marks}")
+display_subject_analysis()
+def display_Student_analysis():
+    print("=" *50)
+    print("Individual Student Analysis".center(50))
+    print("=" *50)
+    print(f"{'Highest Marks':<25}: {np.max(marks)}")
+    print(f"{'Lowest Marks':<25}: {np.min(marks)}")
+    for i in range(len(students)):
+        print(f"{students[i]}".center(50))
+        print(f"{'Marks':<25}: {Average_marks[i]}")
+        print(f"{'Grade ':<25}: {Grade[i]}")
+display_Student_analysis()
+print(f"{'Students with Maths >= 80':<35}: {students[marks[:, 0] >= 80]}")
+print(f"{'Students with English >= 90':<35}: {students[marks[:, -1] >= 90]}")
+def broadcasting_example():
+    print("=" *50)
+    print("Broadcasting Example".center(50))
+    print("=" *50)
+    print(f"{'Original Marks':<25}: {marks}")
+    print(f"{'Marks after adding 5':<25}: {marks + 5}")
+    print(f"{'Marks after adding 5 to English':<25}: {marks[:, -1] + 5}")
+    print(f"{'Marks after adding 5 to Maths':<25}: {marks[:, 0] + 5}")
+    print(f"{'Marks after adding 2 to Physics':<25}: {marks[:, 1] + 2}")
+    print(f"{'Marks after adding 0 to Chemistry':<25}: {marks[:, 2] + 0}")
+    print(f"{'Marks after adding 3 to Biology':<25}: {marks[:, 3] + 3}")
+    bonus = np.array([13, 5, 3, 5, 0])
+    new_marks = marks + bonus
+    print(np.where(new_marks>100 ,100 ,new_marks))
+broadcasting_example()
+def normalisation_example():
+    print("=" *50)
+    print("Normalisation Example".center(50))
+    print("=" *50)
+    normalisation = (marks - np.min(marks)) / (np.max(marks) - np.min(marks))
+    print(f"{'Normalised Marks':<25}: {normalisation.round(2)}")
+normalisation_example()

@@ -10,5 +10,11 @@ df["Marks"] = [56, 76, 88]
 new_row = pd.DataFrame([{"Name":"Mari","Age":19,"Course":"BBA","Marks":78},
                        {"Name":"Heru","Age":21,"Course":"Bcom","Marks":88}],index=["Student4", "Student5"])
 df = pd.concat([df,new_row])
+#Filtering
+print(df[df["Marks"] >= 80])
+print(df[df["Age"] <= 22])
+print(df[df["Course"] == "MAICS"])
+print(df[(df["Marks"] <= 70) & (df["Marks"] <= 90)])
+print(df[(df["Course"] == "MAICS") | (df["Course"] == "MPCS")])
 df = df.sort_values(by=['Marks'],ascending=False)
 print(df.iloc[0:3])

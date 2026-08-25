@@ -26,3 +26,6 @@ df = df.sort_values(by=['Marks'],ascending=False)
 print(df.iloc[0:3])
 
 #Data Cleaning
+data = {"Employee":"NaN",
+        "Job":"Unemployed"}
+df2 = pd.DataFrame(data)

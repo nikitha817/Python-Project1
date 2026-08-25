@@ -16,5 +16,13 @@ print(df[df["Age"] <= 22])
 print(df[df["Course"] == "MAICS"])
 print(df[(df["Marks"] <= 70) & (df["Marks"] <= 90)])
 print(df[(df["Course"] == "MAICS") | (df["Course"] == "MPCS")])
+
+# Sorting Data
+print(df.sort_values(by=['Marks']))
+print(df.sort_values(by=['Marks'],ascending=False))
+print(df.sort_values(by=['Age','Marks']))
+print(df.sort_values(by=['Name']))
 df = df.sort_values(by=['Marks'],ascending=False)
 print(df.iloc[0:3])
+
+#Data Cleaning

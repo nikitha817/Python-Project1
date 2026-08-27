@@ -46,3 +46,18 @@ df2["Age"] = df2["Age"].fillna(df2['Age'].median())
 df2["Course"] = df2["Course"].fillna("Unknown")
 df2["Attendance"] = df2["Attendance"].fillna(0)
 print(df2)
+
+#Duplicates
+data2 = {
+    "Name": ["Shiv", "Nove", "Git", "Alex", "Shiv", "Git", "Sara"],
+    "Course": ["MAICS", "MPCS", "MSCS", "MAICS", "MAICS", "MSCS", "MPCS"],
+    "Marks": [89, 76, 82, 95, 89, 82, 91]
+}
+
+df3 = pd.DataFrame(data2)
+print(df3)
+print(df3.duplicated())
+print(df3.duplicated().sum())
+df3_delete_duplicates = df3.drop_duplicates().reset_index()
+print(df3_delete_duplicates)
+

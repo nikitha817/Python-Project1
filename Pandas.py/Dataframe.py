@@ -61,3 +61,16 @@ print(df3.duplicated().sum())
 df3_delete_duplicates = df3.drop_duplicates().reset_index()
 print(df3_delete_duplicates)
 
+#groupby
+data3 = {
+    "Name": ["Shiv", "Nove", "Git", "Alex", "Ram", "Sara", "John"],
+    "Course": ["MAICS", "MPCS", "MSCS", "MAICS", "MPCS", "MSCS", "MAICS"],
+    "Marks": [89, 76, 82, 95, 68, 91, 84],
+    "Attendance": [92, 88, 85, 96, 78, 90, 87]
+}
+
+df4 = pd.DataFrame(data3)
+print(df4.groupby("Course")["Marks"].mean())
+print(df4.groupby("Course")["Marks"].max())
+print(df4.groupby("Course")["Marks"].count())
+print(df4.groupby("Course")["Attendance"].count())

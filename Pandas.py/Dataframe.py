@@ -74,3 +74,8 @@ print(df4.groupby("Course")["Marks"].mean())
 print(df4.groupby("Course")["Marks"].max())
 print(df4.groupby("Course")["Marks"].count())
 print(df4.groupby("Course")["Attendance"].count())
+#final output 
+print(df4.groupby("Course")[["Marks", "Attendance"]].agg({
+    "Marks": ["mean", "max", "min"],
+    "Attendance": ["mean"]
+}))

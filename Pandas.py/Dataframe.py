@@ -26,6 +26,23 @@ df = df.sort_values(by=['Marks'],ascending=False)
 print(df.iloc[0:3])
 
 #Data Cleaning
-data = {"Employee":"NaN",
-        "Job":"Unemployed"}
-df2 = pd.DataFrame(data)
+student_data = {
+    "Name": ["Shiv", "Nove", "Git", "Alex", "Ram", "John", "Sara"],
+    "Age": [21, 20, None, 22, 21, None, 23],
+    "Course": ["MAICS", "MPCS", "MSCS", None, "MAICS", "MPCS", None],
+    "Marks": [89, None, 76, 95, None, 68, 84],
+    "Attendance": [92, 88, None, 96, 85, None, 90]
+}
+
+df2 = pd.DataFrame(student_data)
+print(df2.isnull())
+print(df2.isnull().sum())
+print(df2.isnull().sum().sum())
+print(df2.isnull().mean().multiply(100))
+df_clean = df2.dropna()
+print(df_clean)
+df2["Marks"] = df2["Marks"].fillna(df2["Marks"].mean())
+df2["Age"] = df2["Age"].fillna(df2['Age'].median())
+df2["Course"] = df2["Course"].fillna("Unknown")
+df2["Attendance"] = df2["Attendance"].fillna(0)
+print(df2)

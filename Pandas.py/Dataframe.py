@@ -1,4 +1,5 @@
 import pandas as pd
+
 Data = {
     "Name":["Shiv", "Nove", "Git"],
     "Age":[23, 21, 20],
@@ -79,3 +80,6 @@ print(df4.groupby("Course")[["Marks", "Attendance"]].agg({
     "Marks": ["mean", "max", "min"],
     "Attendance": ["mean"]
 }))
+#value_count function
+print(df4.value_counts("Course"))
+print(df4.value_counts(df4["Attendance"] >= 90))

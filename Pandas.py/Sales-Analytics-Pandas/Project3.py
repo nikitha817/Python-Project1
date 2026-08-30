@@ -1,4 +1,7 @@
 import pandas as pd
 df = pd.read_csv("sales-data.csv")
-data = pd.DataFrame(df)
-print(data)
+
+print(df.shape)
+print(df.columns)
+print(df.info())
+print(df.describe())

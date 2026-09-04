@@ -7,13 +7,13 @@ print(df.info())
 print(df.describe())
 """
 df["Date"] = pd.to_datetime(df["Date"])
-print(df.info("Date"))
+#print(df.info("Date"))
 
 #Adding new columns
 df["Revenue"] = df["Units_Sold"] * df["Unit_Price"]
 df["Cost"] = df["Units_Sold"] * df["Cost_Price"]
 df["Profit"] = df["Revenue"] - df["Cost"]
-print(df.head())
+#print(df.head())
 """
 #Total Revenue, Cost and Profit
 print("Total Revenue:", df["Revenue"].sum())
@@ -41,3 +41,10 @@ print("Highest profit month:", df.groupby("Month")["Profit"].sum().idxmax())
 print("Lowest revenue month:", df.groupby("Month")["Revenue"].sum().idxmin())
 print("Lowest profit month:", df.groupby("Month")["Profit"].sum().idxmin())
 """
+pivot_table = pd.pivot_table(df, index="Category", values="Revenue", columns="Region", aggfunc="sum")
+print(pivot_table)
+pivot_table2 = pd.pivot_table(df, index="Month", values="Revenue", columns="Category", aggfunc="sum")
+print(pivot_table2)
+df = df.sort_values(by="Date")
+df = df.sort_values(by="Revenue", ascending=False)
+df = df.sort_values(by="Profit", ascending=False)

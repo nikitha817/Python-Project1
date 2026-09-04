@@ -1,10 +1,11 @@
 import pandas as pd
 df = pd.read_csv("sales-data.csv")
-
+"""
 print(df.shape)
 print(df.columns)
 print(df.info())
 print(df.describe())
+"""
 df["Date"] = pd.to_datetime(df["Date"])
 print(df.info("Date"))
 
@@ -25,8 +26,18 @@ print("Best Performing Product:", df.groupby("Product")["Profit"].sum().idxmax()
 print("Best Selling Product:", df.groupby("Product")["Units_Sold"].sum().idxmax())
 #Worst selling product
 print("Worst Selling Product:", df.groupby("Product")["Units_Sold"].sum().idxmin())
-"""
+
 #Categorical Analysis
 print("Revenue by Category:", df.groupby("Category")["Revenue"].sum())
 print("Profit by Category:", df.groupby("Category")["Profit"].sum())
 print("Region wise Revenue:", df.groupby("Region")["Revenue"].sum())
+print("Highest Profitable Region:", df.groupby("Region")["Profit"].sum().idxmax())
+"""
+df["Month"] = df["Date"].dt.month_name()
+"""
+print(df[["Date", "Month"]].head())
+print("Highest revenue month:", df.groupby("Month")["Revenue"].sum().idxmax())
+print("Highest profit month:", df.groupby("Month")["Profit"].sum().idxmax())
+print("Lowest revenue month:", df.groupby("Month")["Revenue"].sum().idxmin())
+print("Lowest profit month:", df.groupby("Month")["Profit"].sum().idxmin())
+"""

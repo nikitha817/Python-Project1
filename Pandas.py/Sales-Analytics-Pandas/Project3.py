@@ -101,5 +101,10 @@ print("Total Revenue for each Supplier within each Category:", df.groupby(["Supp
 print("Highest average product rating for each category:", df.groupby("Category")["Rating"].mean().idxmax())
 pivot_table3 = pd.pivot_table(df, index="Region", values=["Revenue", "Profit"], aggfunc="sum")
 print(pivot_table3)
-pivot_table4 = pd.pivot_table(df, index="Region", values="Profit", columns="Category", aggfunc="sum")
+pivot_table4 = pd.pivot_table(df, index="Region", values="Profit", columns="Category", aggfunc="sum", fill_value=0)
 print(pivot_table4)
+
+df = df.rename(columns={"Units_Sold": "Quantity Sold", "Unit_Price": "Selling Price", "Cost_Price": "Purchase Price"})
+print(df.head())
+df = df.drop(columns=["Quantity Sold", "Purchase Price"])
+print(df.head())

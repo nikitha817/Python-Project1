@@ -108,3 +108,4 @@ df = df.rename(columns={"Units_Sold": "Quantity Sold", "Unit_Price": "Selling Pr
 print(df.head())
 df = df.drop(columns=["Quantity Sold", "Purchase Price"])
 print(df.head())
+print(pivot_table4.reset_index())
